@@ -1,12 +1,12 @@
 import random
 from typing import TypeVar, List, Tuple
-X = TypeVar('X')  # generic type to represent a data point
+X = TypeVar('X')  # type générique pour représenter un point de données
 
 def split_data(data: List[X], prob: float) -> Tuple[List[X], List[X]]:
     """Split data into fractions [prob, 1 - prob]"""
-    data = data[:]                    # Make a shallow copy
-    random.shuffle(data)              # because shuffle modifies the list.
-    cut = int(len(data) * prob)       # Use prob to find a cutoff
+    data = data[:]                    # Make a superficiel copy
+    random.shuffle(data)              # shuffle modifies the list.
+    cut = int(len(data) * prob)       # Use prob to find a place to cut
     return data[:cut], data[cut:]     # and split the shuffled list there.
 
 data = [n for n in range(1000)]
@@ -16,10 +16,10 @@ train, test = split_data(data, 0.75)
 assert len(train) == 750
 assert len(test) == 250
 
-# And the original data should be preserved (in some order)
+# Et les données d'origine doivent être conservées (dans un certain ordre)
 assert sorted(train + test) == data
 
-Y = TypeVar('Y')  # generic type to represent output variables
+Y = TypeVar('Y')  # generic type to represent output variables(sorties)
 
 def train_test_split(xs: List[X],
                      ys: List[Y],
@@ -28,7 +28,7 @@ def train_test_split(xs: List[X],
     idxs = [i for i in range(len(xs))]
     train_idxs, test_idxs = split_data(idxs, 1 - test_pct)
 
-    return ([xs[i] for i in train_idxs],  # x_train
+    return ([xs[i] for i in train_idxs],  # x_train  
             [xs[i] for i in test_idxs],   # x_test
             [ys[i] for i in train_idxs],  # y_train
             [ys[i] for i in test_idxs])   # y_test
