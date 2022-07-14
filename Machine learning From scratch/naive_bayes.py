@@ -169,3 +169,8 @@ def main():
     print("hammiest_words", words[:10])
     
 if __name__ == "__main__": main()
+    
+    """sumarization of steps """
+    # 1 - prior probability of target elements (supposant connue les esperances et variances des données d'entrainements)
+    # 2 - posterior probabilities of target elements given each features)
+    # 3 - predictions (retain the target that maximize the posterior probabilities )
